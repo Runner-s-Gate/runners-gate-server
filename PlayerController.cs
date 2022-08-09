@@ -6,7 +6,7 @@ public class PlayerController : KinematicBody
 	// How fast the player moves in meters per second.
 	[Export]
 	public int Speed = 10;
-	
+		
 	// The downward acceleration when in the air, in meters per second squared.
 	[Export]
 	public int FallAcceleration = 10;
@@ -43,14 +43,12 @@ public class PlayerController : KinematicBody
 		{
 			direction.z -= 1f;
 		}
-		GD.Print("abc");
 		
 		direction = direction.Normalized();
 		
 		// Ground velocity
 		_velocity.x = direction.x * Speed;
 		_velocity.z = direction.z * Speed;
-		
 
 		// Vertical velocity
 		_velocity.y -= FallAcceleration * delta;
