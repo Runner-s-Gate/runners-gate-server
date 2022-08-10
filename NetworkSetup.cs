@@ -12,13 +12,13 @@ public class NetworkSetup : Control
 
 	private void _on_HostButton_pressed()
 	{
-		Network.GetInstance().CreateServer();
+		Network.GetInstance().HostGame();
 		Hide();
 	}
 
 	private void _on_JoinButton_pressed()
 	{
-		Network.GetInstance().JoinServer(ipAddr);
+		Network.GetInstance().JoinGame(ipAddr);
 		Hide();
 	}
 }

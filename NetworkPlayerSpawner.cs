@@ -5,6 +5,8 @@ public class NetworkPlayerSpawner : Node
 {
 	PackedScene player = GD.Load<PackedScene>("PlayerCharacter.tscn");
 	
+	public static int seed;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -15,12 +17,15 @@ public class NetworkPlayerSpawner : Node
 		if(GetTree().NetworkPeer != null) {
 			// Global.EmitSignal("toggle_network_setup")
 		}
+		
+		seed = (int)(GD.Randi() % 50);
 	}
 	
+	[Remote]
 	private void InstancePlayer(int id) {
 		PlayerController playerInstance = player.Instance() as PlayerController;
-		playerInstance.SetNetworkMaster(GetTree().GetNetworkUniqueId());
-		playerInstance.Name = GetTree().GetNetworkUniqueId().ToString();
+		playerInstance.SetNetworkMaster(id);
+		playerInstance.Name = id.ToString();
 
 		Transform t = playerInstance.Transform;
 		t.origin = new Vector3(0, 5, 0);
