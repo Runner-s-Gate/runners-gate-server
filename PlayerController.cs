@@ -6,21 +6,25 @@ public class PlayerController : KinematicBody
 	// How fast the player moves in meters per second.
 	[Export]
 	public int Speed = 10;
-		
 	// The downward acceleration when in the air, in meters per second squared.
 	[Export]
 	public int FallAcceleration = 10;
 
 	private Vector3 _velocity = Vector3.Zero;
 
+	[Puppet]
+	public Vector3 PuppetPosition { get; set; }
+	[Puppet]
+	public Vector3 PuppetVelocity { get; set; }
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		PuppetPosition = Transform.origin;
+		PuppetVelocity = _velocity;
 	}
-
-	public override void _PhysicsProcess(float delta)
-	{
+	
+	private Vector3 GetInput(float delta) {
 		// We create a local variable to store the input direction.
 		var direction = Vector3.Zero;
 
@@ -45,14 +49,42 @@ public class PlayerController : KinematicBody
 		}
 		
 		direction = direction.Normalized();
-		
 		// Ground velocity
-		_velocity.x = direction.x * Speed;
-		_velocity.z = direction.z * Speed;
+		Vector3 velocity = Vector3.Zero;
+		velocity.x = direction.x * Speed;
+		velocity.z = direction.z * Speed;
 
 		// Vertical velocity
-		_velocity.y -= FallAcceleration * delta;
-		// Moving the character
-		_velocity = MoveAndSlide(_velocity, Vector3.Up);
+		velocity.y -= FallAcceleration * delta;
+		
+		Rset(nameof(PuppetPosition), Transform.origin);
+		Rset(nameof(PuppetVelocity), velocity);
+		
+		return velocity;
+	}
+
+	public override void _PhysicsProcess(float delta)
+	{
+		Vector3 velocity = Vector3.Zero;
+		if (IsNetworkMaster())
+		{
+			GD.Print("IsNetworkMaster");
+			velocity = GetInput(delta);
+		}
+		else
+		{
+			GD.Print("!IsNetworkMaster");
+			Transform t = Transform;
+			t.origin = PuppetPosition;
+			Transform = t;
+			velocity = PuppetVelocity;
+		}
+		
+		_velocity = MoveAndSlide(velocity);
+
+		if (!IsNetworkMaster())
+		{
+			PuppetPosition = Transform.origin;
+		}
 	}
 }
