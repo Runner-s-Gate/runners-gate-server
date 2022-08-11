@@ -94,7 +94,7 @@ public class Network : Node
 	}
 	
 	public void SetPlayerName(string playerName) {
-		this.PlayerName = playerName;
+		this.PlayerName = playerName + "cube";
 	}
 
 	private void PlayerConnected(int id)
