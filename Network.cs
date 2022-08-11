@@ -92,10 +92,14 @@ public class Network : Node
 
 		SetInMenu();
 	}
+	
+	public void SetPlayerName(string playerName) {
+		this.PlayerName = playerName;
+	}
 
 	private void PlayerConnected(int id)
 	{
-		PlayerName = "LOL";
+		//PlayerName = "LOL";
 
 		GD.Print($"tell other player my name is {PlayerName}");
 		// tell the player that just connected who we are by sending an rpc back to them with your name.

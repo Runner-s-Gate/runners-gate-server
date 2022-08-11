@@ -39,6 +39,13 @@ public class PlayerController : KinematicBody
 		Rset(nameof(PuppetVelocity), velocity);
 	}
 
+	public override void _Ready() {
+		if (IsNetworkMaster())
+		{
+			MainCamera.GetInstance().SetFollowTarget(this);
+		}
+	}
+
 	public override void _PhysicsProcess(float delta)
 	{
 		if (IsNetworkMaster())
@@ -64,11 +71,11 @@ public class PlayerController : KinematicBody
 
 	public void SetPlayerName(string name)
 	{
-		//NameLabel = (Label)GetNode("Label");
+		NameLabel = (Label)GetNode("LabelOrigin/Viewport/Label");
 
 		PuppetPosition = Transform.origin;
 		PuppetVelocity = velocity;
 
-		//NameLabel.Text = name;
+		NameLabel.Text = name;
 	}
 }
