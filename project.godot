@@ -12,7 +12,6 @@ config_version=4
 
 config/name="runners-gate-server"
 run/main_scene="res://MainScene.tscn"
-run/disable_stdout=true
 config/icon="res://icon.png"
 
 [gui]
@@ -25,4 +24,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

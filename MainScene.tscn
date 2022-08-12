@@ -1,13 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Network.cs" type="Script" id=1]
+[ext_resource path="res://NetworkSetup.cs" type="Script" id=2]
 
-[node name="Spatial" type="Spatial"]
+[node name="SceneRoot" type="Node"]
 
-[node name="Spatial" type="Spatial" parent="."]
+[node name="Network" type="Node" parent="."]
 script = ExtResource( 1 )
 
-[node name="CSGBox" type="CSGBox" parent="."]
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0664406, 1.19209e-07, 2.42784 )
+[node name="NetworkSetup" type="Node" parent="."]
+script = ExtResource( 2 )

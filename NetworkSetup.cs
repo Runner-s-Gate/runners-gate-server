@@ -7,7 +7,6 @@ public class NetworkSetup : Node
 
 	public override void _Ready()
 	{
-		//await ToSignal(GetTree(), "process_frame");
-		//Network.GetInstance().HostGame();
+		Network.GetInstance().HostGame();
 	}
 }
