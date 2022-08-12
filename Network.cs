@@ -24,6 +24,8 @@ public class Network : Node
 
 	public override void _Ready()
 	{
+		GD.Print("haha");
+		
 		GetTree().Connect("network_peer_connected", this, nameof(PlayerConnected));
 		GetTree().Connect("network_peer_disconnected", this, nameof(PlayerDisconnected));
 		GetTree().Connect("connected_to_server", this, nameof(ConnectedToServer));

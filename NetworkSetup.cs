@@ -1,31 +1,13 @@
 using Godot;
 using System;
 
-public class NetworkSetup : Control
+public class NetworkSetup : Node
 {
 	private string ipAddr = "127.0.0.1";
-	private string playerName = "";
 
-	private void _on_IpAddress_text_changed(String new_text)
+	public override void _Ready()
 	{
-		ipAddr = new_text;
-	}
-	
-	private void _on_PlayerName_text_changed(String new_text)
-	{
-		playerName = new_text;
-	}
-
-	private void _on_HostButton_pressed()
-	{
-		Network.GetInstance().HostGame();
-		Hide();
-	}
-
-	private void _on_JoinButton_pressed()
-	{
-		Network.GetInstance().SetPlayerName(playerName);
-		Network.GetInstance().JoinGame(ipAddr);
-		Hide();
+		//await ToSignal(GetTree(), "process_frame");
+		//Network.GetInstance().HostGame();
 	}
 }

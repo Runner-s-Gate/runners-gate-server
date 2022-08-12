@@ -39,13 +39,6 @@ public class PlayerController : KinematicBody
 		Rset(nameof(PuppetVelocity), velocity);
 	}
 
-	public override void _Ready() {
-		if (IsNetworkMaster())
-		{
-			MainCamera.GetInstance().SetFollowTarget(this);
-		}
-	}
-
 	public override void _PhysicsProcess(float delta)
 	{
 		if (IsNetworkMaster())
