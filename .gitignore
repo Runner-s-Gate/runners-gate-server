@@ -7,3 +7,9 @@ export.cfg
 # Mono-specific ignores
 .mono/
 data_*/
+
+# Application specific ignores
+Release/
+release/
+Release*/
+release*/
