@@ -8,6 +8,10 @@ export.cfg
 .mono/
 data_*/
 
+# WAT-specific ignores
+test-metadata
+test-results
+
 # Application specific ignores
 Release/
 release/
