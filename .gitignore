@@ -8,5 +8,8 @@ export_presets.cfg
 .mono/
 data_*/
 
-# Application specifics
+# Application specific ignores
 Release/
+release/
+Release*/
+release*/
