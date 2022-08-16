@@ -6,7 +6,7 @@ public class Network : Node
 {
 	private static Network _instance;
 	
-	private readonly int default_port = 4321;
+	private readonly int defaultPort = (int)ConfigLoader.GetValue("network", "server_port");
 
 	private string PlayerName { get; set; }
 
@@ -27,11 +27,11 @@ public class Network : Node
 	public void HostGame()
 	{
 		var peer = new NetworkedMultiplayerENet();
-		peer.CreateServer(default_port, 32);
+		peer.CreateServer(defaultPort, 32);
 		GetTree().NetworkPeer = peer;
 		
 		GD.Print("You are now hosting on:");
-		GD.Print(" - PORT: " + default_port);
+		GD.Print(" - PORT: " + defaultPort);
 	}
 
 	private void PlayerConnected(int id)
