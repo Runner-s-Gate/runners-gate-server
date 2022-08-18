@@ -3,7 +3,7 @@ using System;
 
 public class ChatController : Node
 {
-    [Remote]
+    [Master]
     private void SubmitChatMessage(string playerName, string text)
     {
         GD.Print($"Received chat message: ({playerName}) {text}");
