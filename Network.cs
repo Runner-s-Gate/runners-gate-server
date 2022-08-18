@@ -50,7 +50,7 @@ public class Network : Node
 	[Remote]
 	private void RegisterPlayer(string playerName)
 	{
-		var id = GetTree().GetRpcSenderId();
+		int id = GetTree().GetRpcSenderId();
 		Players.Add(id, playerName);
 		GD.Print($"{playerName} added with ID {id}");
 		SpawnPlayer(id, playerName);

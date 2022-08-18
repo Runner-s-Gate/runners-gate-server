@@ -23,7 +23,5 @@ public class PlayerController : KinematicBody
 
 	public void SetPlayerName(string name)
 	{
-		NameLabel = (Label)GetNode("LabelOrigin/Viewport/Label");
-		NameLabel.Text = name;
 	}
 }
