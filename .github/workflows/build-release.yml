@@ -19,6 +19,9 @@ jobs:
 #    - name: Copy Godot Server Installation
 #      run: cp -r /home/azureuser/Godot_v3.5-stable_mono_linux_server_64/ .
 
+    - name: Copy config file
+      run: cp config-prod.cfg config.cfg
+
     - name: Build Solution
       run: ./Godot_v3.5-stable_mono_linux_headless.64 --build-solutions
 
