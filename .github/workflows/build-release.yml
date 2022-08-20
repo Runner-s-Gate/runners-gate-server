@@ -1,0 +1,32 @@
+name: Build and Release server
+
+on:
+  push:
+    branches: [ "release" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Copy Godot Headless Installation
+      uses: canastro/copy-file-action@master
+      with:
+        source: "/home/azureuser/Godot_v3.5-stable_mono_linux_headless_64"
+        target: "."
+
+    - name: Copy Godot Server Installation
+      uses: canastro/copy-file-action@master
+      with:
+        source: "/home/azureuser/Godot_v3.5-stable_mono_linux_headless_64"
+        target: "."
+
+    - name: Build Solution
+      run: ./Godot_v3.5-stable_mono_linux_headless.64 --build-solutions
+
+    - name: Start Game Server in tmux
+      run: tmux new -s session_name; tmux send-keys -t session_name "cd runners-gate-server; ./Godot_v3.5-stable_mono_linux_headless.64 ."
