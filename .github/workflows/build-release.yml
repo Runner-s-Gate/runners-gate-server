@@ -23,7 +23,7 @@ jobs:
       run: tmux new -d -s runners-gate-server
       
     - name: "[tmux] Build Solution"
-      run: tmux send-keys -t runners-gate-server ./Godot_v3.5-stable_mono_linux_headless.64 --build-solutions
+      run: tmux send-keys -t runners-gate-server ./Godot_v3.5-stable_mono_linux_headless.64 --build-solutions Enter
 
     - uses: GuillaumeFalourd/wait-sleep-action@v1
       with:
