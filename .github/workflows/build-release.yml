@@ -21,6 +21,10 @@ jobs:
     - name: "Copy config file"
       run: cp config-prod.cfg config.cfg
 
+    - name: "Kill tmux instance"
+      run: tmux kill-session -t runners-gate-server
+    
+
     - name: "Start tmux instance"
       run: tmux new -d -s runners-gate-server
       
